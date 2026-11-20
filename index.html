@@ -19449,11 +19449,20 @@
 
     function parseYearMonthInfo(rawDateStr) {
       if (!rawDateStr) return null;
-      const m = String(rawDateStr).match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-      if (!m) return null;
-      const d = parseInt(m[1], 10);
-      const mo = parseInt(m[2], 10);
-      const y = parseInt(m[3], 10);
+      const s = String(rawDateStr);
+      let d = 0, mo = 0, y = 0;
+      const mDmy = s.match(/(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/);
+      if (mDmy) {
+        d = parseInt(mDmy[1], 10);
+        mo = parseInt(mDmy[2], 10);
+        y = parseInt(mDmy[3], 10);
+      } else {
+        const mYmd = s.match(/(\d{4})[\/\-\.](\d{1,2})[\/\-\.](\d{1,2})/);
+        if (!mYmd) return null;
+        y = parseInt(mYmd[1], 10);
+        mo = parseInt(mYmd[2], 10);
+        d = parseInt(mYmd[3], 10);
+      }
       if (y < 2018 || y > 2035 || mo < 1 || mo > 12 || d < 1 || d > 31) return null;
       const ym = `${String(y).padStart(4, '0')}-${String(mo).padStart(2, '0')}`;
       return {
@@ -19463,6 +19472,14 @@
         label: `Tháng ${String(mo).padStart(2, '0')}/${y}`,
         dateStr: `${String(d).padStart(2, '0')}/${String(mo).padStart(2, '0')}/${y}`
       };
+    }
+
+    function extractAllDateMatches(rawStr) {
+      if (!rawStr) return [];
+      const s = String(rawStr);
+      const dmy = s.match(/\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{4}/g) || [];
+      if (dmy.length > 0) return dmy;
+      return s.match(/\d{4}[\/\-\.]\d{1,2}[\/\-\.]\d{1,2}/g) || [];
     }
 
     function computeMonthlyCashflowData() {
@@ -19481,6 +19498,7 @@
             inTransfers: [],
             outAmount: 0,
             outParcelCount: 0,
+            outParcelSet: new Set(),
             hhMap: new Map()
           });
         }
@@ -19497,6 +19515,7 @@
         inTransfers: [],
         outAmount: 0,
         outParcelCount: 0,
+        outParcelSet: new Set(),
         hhMap: new Map()
       };
 
@@ -19517,11 +19536,14 @@
         });
       });
 
-      // 2. Gom các khoản chi trả cho hộ dân vào từng tháng
+      // 2. Gom các khoản chi trả cho hộ dân (cả Chi trả BT và Thuế SDĐ) vào từng tháng
       const addParcelPayoutToBucket = (bucket, rec, recIdx, amount, payDateDisplay) => {
         if (amount <= 0) return;
         bucket.outAmount += amount;
-        bucket.outParcelCount += 1;
+        if (!bucket.outParcelSet.has(recIdx)) {
+          bucket.outParcelSet.add(recIdx);
+          bucket.outParcelCount = bucket.outParcelSet.size;
+        }
         const rawName = (rec['Chủ sử dụng'] || '').trim();
         const displayName = isPlaceholderOwnerName(rawName)
           ? `Chưa rõ tên (Tờ ${rec['Tờ BĐ']}/${rec['Số thửa']})`
@@ -19549,12 +19571,11 @@
         });
       };
 
-      allRecords.forEach((rec, recIdx) => {
-        const totalPaid = rec['Số tiền đã chi trả'] || 0;
-        if (totalPaid <= 0) return;
-        const rawChiTra = String(rec['Chi trả BT'] || '').trim();
-
-        const roundParts = rawChiTra ? rawChiTra.split(/\s*[;\n]+\s*/).filter(Boolean) : [];
+      const allocateStreamToBuckets = (rec, recIdx, streamAmount, rawText, fallbackLabel, fallbackDateText = '') => {
+        if (streamAmount <= 0) return;
+        const primaryText = String(rawText || '').trim();
+        const effectiveText = primaryText || String(fallbackDateText || '').trim();
+        const roundParts = effectiveText ? effectiveText.split(/\s*[;\n]+\s*/).filter(Boolean) : [];
         const parsedRounds = roundParts.map(p => {
           const parsedItem = parseRoundPartWithMoney(p, true);
           const ymInfo = parseYearMonthInfo(parsedItem.note || p);
@@ -19571,23 +19592,23 @@
           parsedRounds.forEach(pr => {
             if (pr.money > 0) {
               const b = pr.ymInfo ? ensureMonthBucket(pr.ymInfo) : undatedBucket;
-              addParcelPayoutToBucket(b, rec, recIdx, pr.money, pr.text || rawChiTra);
+              addParcelPayoutToBucket(b, rec, recIdx, pr.money, pr.text || effectiveText);
               allocated += pr.money;
             }
           });
-          if (totalPaid > allocated) {
+          if (streamAmount > allocated) {
             const validYms = parsedRounds.map(x => x.ymInfo).filter(Boolean);
             const fallbackYm = dateBasis === 'FIRST' ? validYms[0] : validYms[validYms.length - 1];
             const b = fallbackYm ? ensureMonthBucket(fallbackYm) : undatedBucket;
-            addParcelPayoutToBucket(b, rec, recIdx, totalPaid - allocated, rawChiTra);
+            addParcelPayoutToBucket(b, rec, recIdx, streamAmount - allocated, effectiveText || fallbackLabel);
           }
         } else {
-          const allDates = rawChiTra.match(/\d{1,2}\/\d{1,2}\/\d{4}/g) || [];
+          const allDates = extractAllDateMatches(effectiveText);
           const validYms = allDates.map(d => parseYearMonthInfo(d)).filter(Boolean);
           if (validYms.length > 1 && dateBasis === 'SPLIT_EQUAL') {
-            const perRound = Math.round(totalPaid / validYms.length);
+            const perRound = Math.round(streamAmount / validYms.length);
             validYms.forEach((ymInfo, i) => {
-              const amt = i === validYms.length - 1 ? (totalPaid - perRound * (validYms.length - 1)) : perRound;
+              const amt = i === validYms.length - 1 ? (streamAmount - perRound * (validYms.length - 1)) : perRound;
               addParcelPayoutToBucket(ensureMonthBucket(ymInfo), rec, recIdx, amt, `${ymInfo.dateStr} (chia ${validYms.length} đợt)`);
             });
           } else {
@@ -19595,8 +19616,35 @@
               ? (dateBasis === 'FIRST' ? validYms[0] : validYms[validYms.length - 1])
               : null;
             const b = chosenYm ? ensureMonthBucket(chosenYm) : undatedBucket;
-            addParcelPayoutToBucket(b, rec, recIdx, totalPaid, rawChiTra || 'Đã chi trả');
+            const displayLbl = primaryText || (chosenYm ? chosenYm.dateStr : fallbackLabel);
+            addParcelPayoutToBucket(b, rec, recIdx, streamAmount, displayLbl);
           }
+        }
+      };
+
+      allRecords.forEach((rec, recIdx) => {
+        const totalPaid = rec['Số tiền đã chi trả'] || 0;
+        if (totalPaid <= 0) return;
+
+        const rawChiTra = String(rec['Chi trả BT'] || '').trim();
+        const rawThueSdd = String(rec['Thuế SDĐ'] || '').trim();
+        const taxPaid = rec['Số tiền thuế SDĐ'] || 0;
+        const btPaid = rec['Số tiền BT đã chi'] !== undefined
+          ? (rec['Số tiền BT đã chi'] || 0)
+          : Math.max(0, totalPaid - taxPaid);
+
+        if (btPaid > 0 && taxPaid > 0) {
+          // Có cả Chi trả BT và Thuế SDĐ: phân bổ đúng ngày từng khoản
+          allocateStreamToBuckets(rec, recIdx, btPaid, rawChiTra, 'Đã chi trả BT', rawThueSdd);
+          const taxLabel = rawThueSdd ? (rawThueSdd.toLowerCase().includes('sdđ') || rawThueSdd.toLowerCase().includes('sdd') || rawThueSdd.toLowerCase().includes('thuế') ? rawThueSdd : `${rawThueSdd} (Thuế SDĐ)`) : '';
+          allocateStreamToBuckets(rec, recIdx, taxPaid, taxLabel, 'Đã đóng thuế SDĐ', rawChiTra);
+        } else if (taxPaid > 0 && btPaid <= 0) {
+          // Chỉ có Thuế SDĐ / Tiền sử dụng đất: lấy ngày từ cột Thuế SDĐ (hoặc fallback Chi trả BT nếu có)
+          const taxLabel = rawThueSdd ? (rawThueSdd.toLowerCase().includes('sdđ') || rawThueSdd.toLowerCase().includes('sdd') || rawThueSdd.toLowerCase().includes('thuế') ? rawThueSdd : `${rawThueSdd} (Thuế SDĐ)`) : '';
+          allocateStreamToBuckets(rec, recIdx, totalPaid, taxLabel, 'Đã đóng thuế SDĐ', rawChiTra);
+        } else {
+          // Chỉ có Chi trả BT (hoặc dữ liệu cũ)
+          allocateStreamToBuckets(rec, recIdx, totalPaid, rawChiTra, 'Đã chi trả', rawThueSdd);
         }
       });
 
@@ -19783,7 +19831,7 @@
                                   <tr onclick="openEditDrawer(${h.parcels[0].recIdx})" class="hover:bg-teal-50/70 cursor-pointer">
                                     <td class="py-1.5 px-2 font-bold text-slate-500">${hIdx + 1}</td>
                                     <td class="py-1.5 px-2 font-extrabold text-slate-900">${escapeHtml(h.name)}</td>
-                                    <td class="py-1.5 px-2 font-bold text-emerald-800">${h.parcels.map(p => `Tờ ${p.toBd}/${p.soThua}`).join(', ')}</td>
+                                    <td class="py-1.5 px-2 font-bold text-emerald-800">${Array.from(new Set(h.parcels.map(p => `Tờ ${p.toBd}/${p.soThua}`))).join(', ')}</td>
                                     <td class="py-1.5 px-2 text-slate-600">${Array.from(new Set(h.parcels.map(p => p.payDate))).join('; ')}</td>
                                     <td class="py-1.5 px-2 text-right font-extrabold text-teal-900 whitespace-nowrap">${formatCurrency(h.amount)}</td>
                                   </tr>
@@ -22808,7 +22856,7 @@
       { field: 'CC THĐ', regex: /(cc\s*thd|ccthd|cuong\s*che|qd\s*cuong\s*che)/ },
       { field: 'Chi trả BT', regex: /^(chi\s*tra|chi\s*tra\s*bt|chi\s*tra\s*boi\s*thuong|dot\s*chi\s*tra)$/ },
       { field: 'Số tiền đã chi trả', regex: /^(so\s*tien\s*da\s*chi|tien\s*da\s*chi|da\s*chi\s*tra|so\s*tien\s*chi\s*tra)/ },
-      { field: 'Thuế SDĐ', regex: /^(thue\s*sdd|dong\s*thue\s*sdd|chi\s*tien\s*sdd|chi\s*sdd|nop\s*tien\s*sdd|dong\s*tien\s*sdd|thue\s*su\s*dung\s*dat|dong\s*thue\s*su\s*dung\s*dat|chi\s*tien\s*su\s*dung\s*dat)$/ },
+      { field: 'Thuế SDĐ', regex: /^(ngay\s*)?(thue\s*sdd|dong\s*thue\s*sdd|nop\s*thue\s*sdd|chi\s*tra\s*(tien\s*)?sdd|chi\s*tien\s*sdd|chi\s*sdd|nop\s*tien\s*sdd|dong\s*tien\s*sdd|thue\s*su\s*dung\s*dat|dong\s*thue\s*su\s*dung\s*dat|chi\s*tien\s*su\s*dung\s*dat)$/ },
       { field: 'Số tiền thuế SDĐ', regex: /^(so\s*tien\s*thue\s*sdd|tien\s*thue\s*sdd|so\s*tien\s*sdd|tien\s*sdd|so\s*tien\s*thue\s*su\s*dung\s*dat|tien\s*su\s*dung\s*dat|tien\s*thue)/ },
       { field: 'Bàn giao thực tế', regex: /^(ban\s*giao\s*thuc\s*te|bgmb\s*thuc\s*te|ngay\s*ban\s*giao\s*thuc\s*te|bg\s*thuc\s*te)$/ },
       { field: 'Bàn giao MB', regex: /^(ban\s*giao|bgmb|ban\s*giao\s*mb|ban\s*giao\s*mat\s*bang|ban\s*giao\s*tren\s*bien\s*ban|bgmb\s*bien\s*ban)$/ },
