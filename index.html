@@ -18153,11 +18153,11 @@
             <td class="py-2.5 px-2 whitespace-nowrap">
               <span class="px-2 py-0.5 rounded-lg bg-slate-100 text-slate-800 font-extrabold text-[11px]">${escapeHtml(rec['GĐ'])}</span>
             </td>
-            <td class="py-2.5 px-2 whitespace-nowrap font-extrabold text-emerald-900">
+            <td onclick="openEditDrawer(${idx})" title="Bấm để xem chi tiết thửa" class="py-2.5 px-2 whitespace-nowrap font-extrabold text-emerald-900 hover:text-emerald-700 hover:underline cursor-pointer">
               Tờ ${escapeHtml(rec['Tờ BĐ'])}/${escapeHtml(rec['Số thửa'])}
             </td>
-            <td class="py-2.5 px-3 max-w-[220px]">
-              <div class="font-extrabold text-slate-900 truncate">${escapeHtml(rec['Chủ sử dụng'] || 'Chưa cập nhật tên')}</div>
+            <td onclick="openEditDrawer(${idx})" title="Bấm để xem chi tiết thửa" class="py-2.5 px-3 max-w-[220px] cursor-pointer group">
+              <div class="font-extrabold text-slate-900 group-hover:text-emerald-700 group-hover:underline truncate">${escapeHtml(rec['Chủ sử dụng'] || 'Chưa cập nhật tên')}</div>
               <div class="text-[11px] text-slate-500 truncate">${escapeHtml(rec['SĐT'])} ${rec['Địa chỉ'] ? '• ' + escapeHtml(rec['Địa chỉ']) : ''}</div>
             </td>
             <td class="py-2.5 px-2.5 text-right whitespace-nowrap">
