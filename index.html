@@ -303,11 +303,6 @@
           <span class="hidden xl:inline">Đổi mật khẩu</span>
         </button>
 
-        <button type="button" onclick="exportPublishedWebHtml()" class="admin-only-control inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-xs shadow-sm transition cursor-pointer" title="Xuất thành file trang web (.html) nhúng sẵn dữ liệu mới nhất: người khác mở chỉ xem được, chỉ mình bạn có mật khẩu mới sửa được">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="globe" aria-hidden="true" class="lucide lucide-globe w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-          <span>🌐 Xuất bản Web chia sẻ</span>
-        </button>
-
         <!-- Điều chỉnh độ rõ hình nền quy hoạch -->
         <input type="file" id="bg-image-file-input" accept="image/*" class="hidden" onchange="handleCustomBgFileChange(event)">
         <div class="inline-flex items-center rounded-xl bg-white/10 border border-white/15 overflow-hidden text-xs">
@@ -327,13 +322,6 @@
           <span id="undo-count-badge" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-extrabold text-[10px]">25</span>
         </button>
 
-        <!-- Nạp file Excel -->
-        <input type="file" id="excel-file-input" accept=".xlsx,.xls,.csv" class="hidden" onchange="handleFileInputChange(event)">
-        <button type="button" onclick="document.getElementById('excel-file-input').click()" class="admin-only-control inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-sm transition cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="folder-up" aria-hidden="true" class="lucide lucide-folder-up w-4 h-4"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path><path d="M12 10v6"></path><path d="m9 13 3-3 3 3"></path></svg>
-          <span>📂 Nạp file Excel</span>
-        </button>
-
         <!-- Cụm Đồng bộ & Cấu hình Google Sheets -->
         <div class="admin-only-control inline-flex items-center rounded-xl overflow-hidden shadow-sm border border-teal-300/60">
           <button type="button" id="btn-sync-gsheet" onclick="quickSyncGoogleSheet()" class="inline-flex items-center gap-1.5 px-3 py-2 bg-teal-400 hover:bg-teal-300 text-slate-950 font-extrabold text-xs transition cursor-pointer" title="Đồng bộ ngay dữ liệu mới nhất từ Google Sheet vào trang HTML (1 chạm)">
@@ -348,21 +336,6 @@
             <span class="hidden xl:inline">Google Sheet</span>
           </button>
         </div>
-
-        <button type="button" id="btn-open-col-mapper" onclick="openColumnMapperModal()" class="admin-only-control inline-flex items-center gap-1 px-2.5 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-400/30 text-amber-200 border border-amber-400/40 font-bold text-xs transition cursor-pointer" title="Kiểm tra hoặc chỉnh lại cách nhận diện cột từ file Excel vừa nạp">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="table-properties" aria-hidden="true" class="lucide lucide-table-properties w-4 h-4"><path d="M15 3v18"></path><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M21 9H3"></path><path d="M21 15H3"></path></svg>
-          <span>⚙️ Ghép cột</span>
-        </button>
-
-        <button type="button" onclick="openQuickPasteModal()" class="admin-only-control inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/15 transition cursor-pointer" title="Dán trực tiếp các dòng copy từ Excel hoặc Zalo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clipboard-paste" aria-hidden="true" class="lucide lucide-clipboard-paste w-4 h-4"><path d="M11 14h10"></path><path d="M16 4h2a2 2 0 0 1 2 2v1.344"></path><path d="m17 18 4-4-4-4"></path><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect></svg>
-          <span class="hidden md:inline">📋 Dán từ Excel</span>
-        </button>
-
-        <button type="button" onclick="exportToExcel()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs border border-teal-400/40 shadow-sm transition cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" aria-hidden="true" class="lucide lucide-download w-4 h-4"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
-          <span>📥 Xuất Excel (.xlsx)</span>
-        </button>
 
         <button type="button" onclick="openNewParcelDrawer()" class="admin-only-control inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/15 transition cursor-pointer" title="Thêm mới một thửa đất vào danh sách">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
@@ -407,12 +380,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="share-2" aria-hidden="true" class="lucide lucide-share-2 w-4 h-4 text-sky-300"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
         <span>5. Báo cáo Zalo</span>
       </button>
-
-      <button type="button" id="tab-btn-smartimport" onclick="switchMainTab('smartimport')" class="tab-nav-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer text-amber-200 hover:bg-white/10 border border-amber-400/30">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="scan-text" aria-hidden="true" class="lucide lucide-scan-text w-4 h-4 text-amber-300"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 8h8"></path><path d="M7 12h10"></path><path d="M7 16h6"></path></svg>
-        <span>6. Nhập liệu Ảnh / File &amp; Kiểm duyệt</span>
-        <span id="badge-pending-review" class="hidden px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-slate-950">0</span>
-      </button>
     </div>
   </header>
 
@@ -449,7 +416,7 @@
 
         <div class="flex items-start sm:items-center gap-2 flex-wrap pt-1 border-t border-slate-100">
           <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 min-w-[72px]">Giai đoạn:</span>
-          <div id="dash-gd-pills" class="flex flex-wrap items-center gap-1.5"><button type="button" onclick="toggleDashGd('ALL')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-emerald-700 text-white border-emerald-700 shadow-sm">Tất cả GĐ (1.212)</button><button type="button" onclick="toggleDashGd('GĐ 1')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 1 (272)</button><button type="button" onclick="toggleDashGd('GĐ 2')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 2 (138)</button><button type="button" onclick="toggleDashGd('GĐ 3')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 3 (366)</button><button type="button" onclick="toggleDashGd('GĐ 4')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 4 (145)</button><button type="button" onclick="toggleDashGd('GĐ 5')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 5 (268)</button><button type="button" onclick="toggleDashGd('DGT')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">DGT (15)</button><button type="button" onclick="toggleDashGd('DTL')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">DTL (8)</button></div>
+          <div id="dash-gd-pills" class="flex flex-wrap items-center gap-1.5"><button type="button" onclick="toggleDashGd('ALL')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-emerald-700 text-white border-emerald-700 shadow-sm">Tất cả GĐ (1.212)</button><button type="button" onclick="toggleDashGd('GĐ 1')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 1 (272)</button><button type="button" onclick="toggleDashGd('GĐ 2')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 2 (138)</button><button type="button" onclick="toggleDashGd('GĐ 3')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 3 (366)</button><button type="button" onclick="toggleDashGd('GĐ 4')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 4 (145)</button><button type="button" onclick="toggleDashGd('GĐ 5')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer bg-white text-slate-700 border-slate-200 hover:bg-emerald-50">GĐ 5 (268)</button></div>
         </div>
 
         <div class="flex items-start sm:items-center gap-2 flex-wrap pt-1 border-t border-slate-100">
@@ -569,7 +536,7 @@
               <h3 class="text-sm font-extrabold text-slate-900">Biểu đồ Phễu Tiến độ 12 Mốc Nghiệp vụ GPMB</h3>
               <p class="text-[11px] text-slate-500">Bấm trực tiếp vào từng thanh tiến độ để mở danh sách thửa tương ứng</p>
             </div>
-            <div id="funnel-gd-pills" class="flex flex-wrap items-center gap-1"><button type="button" onclick="setFunnelGd('ALL')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-emerald-600 text-white">Tất cả</button><button type="button" onclick="setFunnelGd('GĐ 1')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 1</button><button type="button" onclick="setFunnelGd('GĐ 2')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 2</button><button type="button" onclick="setFunnelGd('GĐ 3')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 3</button><button type="button" onclick="setFunnelGd('GĐ 4')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 4</button><button type="button" onclick="setFunnelGd('GĐ 5')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 5</button><button type="button" onclick="setFunnelGd('DGT')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">DGT</button><button type="button" onclick="setFunnelGd('DTL')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">DTL</button></div>
+            <div id="funnel-gd-pills" class="flex flex-wrap items-center gap-1"><button type="button" onclick="setFunnelGd('ALL')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-emerald-600 text-white">Tất cả</button><button type="button" onclick="setFunnelGd('GĐ 1')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 1</button><button type="button" onclick="setFunnelGd('GĐ 2')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 2</button><button type="button" onclick="setFunnelGd('GĐ 3')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 3</button><button type="button" onclick="setFunnelGd('GĐ 4')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 4</button><button type="button" onclick="setFunnelGd('GĐ 5')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer bg-slate-100 text-slate-600 hover:bg-slate-200">GĐ 5</button></div>
           </div>
           <div id="funnel-bars-container" class="space-y-2 pt-1">
             <div onclick="openParcelsWithBottleneck('HAS_TRICH_LUC')" class="group cursor-pointer ">
@@ -1326,6 +1293,7 @@
               <option value="MISSING_PD">Đã xét duyệt nhưng CHƯA PD PABT</option>
               <option value="MISSING_QD">Đã PD PABT nhưng CHƯA có QĐTHĐ</option>
               <option value="MISSING_PAID">Đã PD PABT nhưng CHƯA chi trả</option>
+              <option value="TAX_ONLY">Đã chi tiền SDĐ nhưng CHƯA nhận tiền BT</option>
               <option value="DIFF_MONEY">Chênh lệch tiền (PD PABT ≠ Đã chi trả)</option>
               <option value="PD_AND_PAID_ZERO">Thửa phê duyệt 0 đ &amp; chi trả 0 đ</option>
               <option value="PD_ZERO">Thửa đã phê duyệt 0 đ (PD = 0 đ)</option>
@@ -12698,16 +12666,17 @@
             <p class="text-[11px] text-indigo-800 mt-0.5">Nhập từng đợt Công ty chuyển tiền vào bảng dưới — hệ thống tự cộng lũy kế và trừ số đã chi trả để tính quỹ còn lại</p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <datalist id="company-transfer-gd-list"><option value="GĐ 1"></option><option value="GĐ 2"></option><option value="GĐ 3"></option><option value="GĐ 4"></option><option value="GĐ 5"></option><option value="DGT"></option><option value="DTL"></option><option value="Toàn dự án"></option></datalist>
-            <input type="file" id="transfer-only-excel-input" accept=".xlsx,.xls,.csv" class="hidden" onchange="handleTransferOnlyExcelChange(event)">
+            <datalist id="company-transfer-gd-list"><option value="GĐ 1"></option><option value="GĐ 2"></option><option value="GĐ 3"></option><option value="GĐ 4"></option><option value="GĐ 5"></option><option value="Toàn dự án"></option></datalist>
             <button type="button" onclick="addCompanyTransferRound()" class="transfer-edit-control inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-sm cursor-pointer">
               <span>+ Thêm đợt chuyển tiền</span>
             </button>
-            <button type="button" onclick="openPasteCompanyTransfersModal()" class="transfer-edit-control inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-white hover:bg-indigo-100 text-indigo-900 border border-indigo-300 font-bold text-xs cursor-pointer">
-              <span>📋 Dán từ Excel</span>
+            <button type="button" id="btn-sync-transfer-gsheet" onclick="openTransferGoogleSheetModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold text-xs shadow-sm cursor-pointer" title="Cấu hình & nạp dữ liệu Bảng 1 từ đường link Google Sheet">
+              <i data-lucide="link" class="w-3.5 h-3.5"></i>
+              <span>Nạp từ đường link Google Sheet</span>
             </button>
-            <button type="button" onclick="document.getElementById('transfer-only-excel-input').click()" class="transfer-edit-control inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-white hover:bg-indigo-100 text-indigo-900 border border-indigo-300 font-bold text-xs cursor-pointer" title="Tự động nhận diện dữ liệu từ sheet Cong ty chuyen tien trong file Excel">
-              <span>📂 Nạp sheet Cong ty chuyen tien</span>
+            <button type="button" id="btn-quick-sync-transfer-gsheet" onclick="quickSyncTransferFromGoogleSheet()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-sm cursor-pointer" title="Cập nhật nhanh Bảng 1 trực tiếp từ link Google Sheet mặc định">
+              <i data-lucide="refresh-cw" id="icon-sync-transfer-gsheet" class="w-3.5 h-3.5"></i>
+              <span id="lbl-sync-transfer-gsheet">Cập nhật</span>
             </button>
             <button type="button" onclick="confirmClearAllCompanyTransfers()" class="transfer-edit-control inline-flex items-center gap-1 px-2.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs cursor-pointer" title="Xóa hết các đợt để nhập lại từ đầu">
               <span>🗑️ Làm trống</span>
@@ -14310,7 +14279,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" aria-hidden="true" class="lucide lucide-search w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
               <input type="text" id="tr-search-input" oninput="transferPage=1; renderTransferSheet()" placeholder="Tìm tên chủ hộ, SĐT, Tờ/Thửa, đợt bố trí..." class="w-full pl-8 pr-3 py-1.5 rounded-xl border border-slate-300 font-semibold outline-none focus:border-indigo-500">
             </div>
-            <select id="tr-gd-filter" onchange="transferPage=1; renderTransferSheet()" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white font-bold"><option value="ALL">Tất cả Giai đoạn</option><option value="GĐ 1">GĐ 1</option><option value="GĐ 2">GĐ 2</option><option value="GĐ 3">GĐ 3</option><option value="GĐ 4">GĐ 4</option><option value="GĐ 5">GĐ 5</option><option value="DGT">DGT</option><option value="DTL">DTL</option></select>
+            <select id="tr-gd-filter" onchange="transferPage=1; renderTransferSheet()" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white font-bold"><option value="ALL">Tất cả Giai đoạn</option><option value="GĐ 1">GĐ 1</option><option value="GĐ 2">GĐ 2</option><option value="GĐ 3">GĐ 3</option><option value="GĐ 4">GĐ 4</option><option value="GĐ 5">GĐ 5</option></select>
             <select id="tr-round-filter" onchange="transferPage=1; renderTransferSheet()" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white font-bold"><option value="ALL">Tất cả đợt bố trí vốn</option><option value="đợt 1">đợt 1</option><option value="đợt 3">đợt 3</option><option value="đợt 4">đợt 4</option><option value="đợt 8">đợt 8</option><option value="đợt 9">đợt 9</option><option value="đợt 11">đợt 11</option><option value="đợt 14">đợt 14</option><option value="đợt 15">đợt 15</option><option value="đợt 16">đợt 16</option><option value="đợt 17">đợt 17</option><option value="đợt 18">đợt 18</option><option value="Đợt 16">Đợt 16</option><option value="Đợt 17">Đợt 17</option><option value="Đợt 18">Đợt 18</option><option value="Đợt 19">Đợt 19</option><option value="Đợt 20">Đợt 20</option><option value="Đợt 21">Đợt 21</option><option value="Đợt 22">Đợt 22</option><option value="Đợt 23">Đợt 23</option><option value="Đợt 24">Đợt 24</option><option value="Đợt 25">Đợt 25</option><option value="Đợt 26">Đợt 26</option><option value="Đợt 27">Đợt 27</option><option value="Đợt 28">Đợt 28</option><option value="Đợt 29">Đợt 29</option><option value="Đợt 30">Đợt 30</option><option value="Đợt 31">Đợt 31</option><option value="Đợt 32">Đợt 32</option><option value="Đợt 33">Đợt 33</option><option value="Đợt 34">Đợt 34</option><option value="Đợt 35">Đợt 35</option><option value="Đợt 36">Đợt 36</option><option value="Đợt 37">Đợt 37</option><option value="Đợt 38">Đợt 38</option><option value="Đợt 39">Đợt 39</option><option value="Đợt 40">Đợt 40</option><option value="Đợt 41">Đợt 41</option><option value="Đợt 42">Đợt 42</option><option value="Đợt 43">Đợt 43</option><option value="Đợt 44">Đợt 44</option><option value="Đợt 45">Đợt 45</option><option value="Đợt 46">Đợt 46</option><option value="Đợt 47">Đợt 47</option><option value="Đợt 48">Đợt 48</option><option value="Đợt 49">Đợt 49</option><option value="đợt 02">đợt 02</option><option value="Đợt 52">Đợt 52</option><option value="Đợt 53">Đợt 53</option><option value="đợt 12">đợt 12</option><option value="Đợt 56">Đợt 56</option><option value="Đợt 57">Đợt 57</option><option value="Đợt 58">Đợt 58</option><option value="Đợt 59">Đợt 59</option><option value="Đợt 60">Đợt 60</option><option value="Đợt 61">Đợt 61</option><option value="Đã bố trí vốn">Đã bố trí vốn</option></select>
             <div class="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200 font-extrabold text-indigo-950 tabular-nums">
               <span>Hiển thị: <strong id="tr-total-info">290 hộ</strong></span>
@@ -15687,250 +15656,6 @@
 
     <!-- =================================================================== -->
     <!-- TAB 6: NHẬP LIỆU BẰNG CHỤP HÌNH / FILE & BÁO CÁO KIỂM DUYỆT         -->
-    <!-- =================================================================== -->
-    <section id="view-smartimport" class="max-w-[1440px] mx-auto space-y-4 hidden">
-      <!-- Khối 1: Chọn nguồn nhập liệu (Chụp hình, Tải ảnh, File Excel/Word/PDF, Dán văn bản) -->
-      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-4 sm:p-5 space-y-4">
-        <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-3">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-0.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-[11px]">SHEET NHẬP LIỆU THÔNG MINH</span>
-              <h2 class="text-sm sm:text-base font-extrabold text-slate-900">Nhập liệu từ Chụp hình / File tài liệu &amp; Kiểm duyệt trước khi cập nhật</h2>
-            </div>
-            <p class="text-xs text-slate-600 mt-1">
-              Quy trình 3 bước an toàn: <strong>① Chụp hình hoặc tải File</strong> → <strong>② Hệ thống báo cáo rõ vị trí sẽ cập nhật để bạn kiểm duyệt</strong> → <strong>③ Chỉ cập nhật vào dữ liệu khi bạn bấm Đồng ý</strong>.
-            </p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="toggleAiOcrConfigBox()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer" title="Tùy chọn cấu hình khóa API AI để nhận diện ảnh chữ viết tay / bảng biểu phức tạp siêu chuẩn">
-              ⚙️ Tùy chọn nhận diện nâng cao
-            </button>
-            <button type="button" onclick="resetSmartImportWorkspace()" class="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs cursor-pointer">
-              Làm mới phiên nhập
-            </button>
-          </div>
-        </div>
-
-        <!-- Hộp cấu hình tùy chọn Gemini API Key (ẩn mặc định) -->
-        <div id="smartimport-ai-config-box" class="hidden p-3.5 rounded-xl bg-indigo-50/80 border border-indigo-200 text-xs space-y-2">
-          <div class="font-extrabold text-indigo-950">Tùy chọn nâng cao: Sử dụng Gemini Vision API để đọc ảnh chụp / PDF bảng biểu phức tạp</div>
-          <p class="text-[11px] text-indigo-800">Mặc định hệ thống tự nhận diện miễn phí ngay trên trình duyệt (Tesseract OCR tiếng Việt + đọc trực tiếp Excel/Word/PDF). Nếu bạn có Gemini API Key, có thể nhập vào đây để AI trích xuất bảng biểu từ ảnh chụp chính xác hơn:</p>
-          <div class="flex flex-wrap items-center gap-2">
-            <input type="password" id="smartimport-gemini-key" placeholder="Dán Gemini API Key (AIza...) nếu có..." class="flex-1 min-w-[240px] px-3 py-1.5 rounded-lg border border-indigo-300 bg-white font-mono text-xs">
-            <button type="button" onclick="saveSmartImportApiKey()" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold cursor-pointer">Lưu khóa trên máy này</button>
-          </div>
-        </div>
-
-        <!-- 4 Nút chọn nguồn đầu vào -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-          <!-- Input ẩn -->
-          <input type="file" id="smart-camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleSmartImageFiles(event)">
-          <input type="file" id="smart-image-input" accept="image/*" multiple class="hidden" onchange="handleSmartImageFiles(event)">
-          <input type="file" id="smart-doc-input" accept=".xlsx,.xls,.csv,.docx,.pdf,.txt,.png,.jpg,.jpeg,.webp" class="hidden" onchange="handleSmartDocFile(event)">
-
-          <!-- 1. Chụp hình trực tiếp -->
-          <button type="button" onclick="document.getElementById('smart-camera-input').click()"
-            class="p-3.5 rounded-2xl border-2 border-dashed border-emerald-400 bg-emerald-50/70 hover:bg-emerald-100/80 text-left transition cursor-pointer flex items-start gap-3">
-            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 font-extrabold text-base">📷</span>
-            <div>
-              <div class="font-extrabold text-emerald-950 text-xs sm:text-sm">1. Chụp hình trực tiếp</div>
-              <p class="text-[11px] text-emerald-800 mt-0.5">Mở camera chụp Quyết định, Thông báo, Biên bản BGMB, Phiếu chi...</p>
-            </div>
-          </button>
-
-          <!-- 2. Tải ảnh từ máy / Dán ảnh Ctrl+V -->
-          <button type="button" onclick="document.getElementById('smart-image-input').click()"
-            class="p-3.5 rounded-2xl border-2 border-dashed border-sky-400 bg-sky-50/70 hover:bg-sky-100/80 text-left transition cursor-pointer flex items-start gap-3">
-            <span class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0 font-extrabold text-base">🖼️</span>
-            <div>
-              <div class="font-extrabold text-sky-950 text-xs sm:text-sm">2. Chọn ảnh / Dán ảnh</div>
-              <p class="text-[11px] text-sky-800 mt-0.5">Chọn ảnh từ máy tính hoặc bấm <strong>Ctrl + V</strong> ảnh chụp màn hình Zalo</p>
-            </div>
-          </button>
-
-          <!-- 3. Tải File Excel / Word / PDF -->
-          <button type="button" onclick="document.getElementById('smart-doc-input').click()"
-            class="p-3.5 rounded-2xl border-2 border-dashed border-indigo-400 bg-indigo-50/70 hover:bg-indigo-100/80 text-left transition cursor-pointer flex items-start gap-3">
-            <span class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 font-extrabold text-base">📂</span>
-            <div>
-              <div class="font-extrabold text-indigo-950 text-xs sm:text-sm">3. Chọn File tài liệu</div>
-              <p class="text-[11px] text-indigo-800 mt-0.5">Hỗ trợ file <strong>Excel (.xlsx)</strong>, <strong>Word (.docx)</strong>, <strong>PDF (.pdf)</strong>, TXT</p>
-            </div>
-          </button>
-
-          <!-- 4. Phân tích ngay nội dung đã nhập -->
-          <button type="button" onclick="analyzeSmartImportContent()"
-            class="p-3.5 rounded-2xl border-2 border-amber-500 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-left transition cursor-pointer flex items-start gap-3 shadow-sm">
-            <span class="w-10 h-10 rounded-xl bg-slate-900 text-amber-300 flex items-center justify-center shrink-0 font-extrabold text-base">🔍</span>
-            <div>
-              <div class="font-extrabold text-slate-950 text-xs sm:text-sm">4. Nhận diện &amp; Lập báo cáo</div>
-              <p class="text-[11px] text-slate-800 mt-0.5">Quét đối chiếu dữ liệu và lập bảng kiểm duyệt trước khi cập nhật</p>
-            </div>
-          </button>
-        </div>
-
-        <!-- Thanh trạng thái tiến trình OCR / Đọc file -->
-        <div id="smartimport-progress-wrap" class="hidden p-3 rounded-xl bg-amber-50 border border-amber-300 space-y-1.5 text-xs">
-          <div class="flex items-center justify-between font-extrabold text-amber-950">
-            <span id="smartimport-progress-label">⏳ Đang nhận diện văn bản từ hình ảnh...</span>
-            <span id="smartimport-progress-pct">0%</span>
-          </div>
-          <div class="w-full h-2 bg-amber-200 rounded-full overflow-hidden">
-            <div id="smartimport-progress-bar" class="h-full bg-amber-600 rounded-full transition-all duration-200" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <!-- Khu vực xem trước Ảnh đã chụp & Văn bản nhận diện được -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-1">
-          <!-- Xem trước hình ảnh (5/12) -->
-          <div ondragover="event.preventDefault(); this.classList.add('ring-2','ring-emerald-500');"
-               ondragleave="this.classList.remove('ring-2','ring-emerald-500');"
-               ondrop="handleSmartDropZone(event)"
-               class="lg:col-span-5 rounded-2xl border border-slate-200 bg-slate-50/90 p-3 flex flex-col justify-between min-h-[210px] transition">
-            <div class="flex items-center justify-between gap-2 mb-2 min-w-0">
-              <span class="text-xs font-extrabold text-slate-800 shrink-0">Xem trước Ảnh / Tài liệu</span>
-              <span id="smartimport-source-info" class="text-[11px] font-bold text-slate-500 truncate max-w-[230px]" title="Chưa chọn tệp nào">Chưa chọn tệp nào</span>
-            </div>
-            <div id="smartimport-preview-box" class="flex-1 flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white p-3 text-center overflow-hidden min-h-[160px]">
-              <p class="text-xs text-slate-400 font-semibold">Chụp hình, tải/kéo thả ảnh hoặc file vào đây, hoặc bấm <strong>Ctrl + V</strong> để dán ảnh</p>
-            </div>
-          </div>
-
-          <!-- Nội dung văn bản trích xuất được & Chọn loại nghiệp vụ gợi ý (7/12) -->
-          <div class="lg:col-span-7 rounded-2xl border border-slate-200 bg-slate-50/90 p-3 space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xs font-extrabold text-slate-800">Nội dung chữ / bảng biểu đã nhận diện:</span>
-                <span id="smartimport-ocr-quality-badge" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-300"></span>
-              </div>
-              <div class="flex items-center gap-1.5 text-xs flex-wrap">
-                <select id="smartimport-ocr-mode" onchange="reRunLastOcrWithNewMode()" class="px-2 py-1 rounded-lg border border-slate-300 bg-white font-bold text-slate-700" title="Chế độ xử lý ảnh chụp">
-                  <option value="AUTO_ENHANCE">🖼️ Ảnh: Tự động tăng nét + khử bóng</option>
-                  <option value="TABLE_MODE">📊 Ảnh: Bảng biểu nhiều cột</option>
-                  <option value="RAW_IMAGE">📷 Ảnh: Giữ nguyên ảnh gốc</option>
-                </select>
-                <select id="smartimport-doc-hint" onchange="analyzeSmartImportContent()" class="px-2.5 py-1 rounded-lg border border-slate-300 bg-white font-bold text-slate-800">
-                  <option value="AUTO">✨ Loại VB: Tự động nhận diện</option>
-                  <option value="PD_PABT">6. Quyết định Phê duyệt PABT (PD PABT)</option>
-                  <option value="QD_THD">7. Quyết định Thu hồi đất (QĐTHĐ)</option>
-                  <option value="TB_THD">2. Thông báo Thu hồi đất (TB THĐ)</option>
-                  <option value="CC_THD">8. Quyết định Cưỡng chế (CC THĐ)</option>
-                  <option value="CHI_TRA">9. Danh sách / Phiếu Chi trả bồi thường</option>
-                  <option value="BGMB">10. Biên bản Bàn giao mặt bằng (BGMB)</option>
-                  <option value="GIAO_DAT">12. Quyết định / Danh sách Giao đất (m²)</option>
-                  <option value="HT_GPMB">11. Hoàn thành công tác GPMB</option>
-                  <option value="TRICH_LUC">1. Trích lục đo đạc</option>
-                  <option value="COMPANY_TRANSFER">💰 Công ty chuyển tiền bố trí vốn (Sheet 2)</option>
-                </select>
-              </div>
-            </div>
-
-            <textarea id="smartimport-extracted-text" rows="7"
-              placeholder="Nội dung nhận diện từ ảnh chụp hoặc file Excel/Word/PDF sẽ hiển thị tại đây. Bạn cũng có thể gõ hoặc dán trực tiếp nội dung văn bản (VD: Quyết định số 2789/QĐ-UBND ngày 04/06/2026 phê duyệt phương án bồi thường cho hộ ông Võ Hoàng Huy, Tờ BĐ số 1, thửa số 2 số tiền 9.738.792.143 đồng...) rồi bấm 'Nhận diện & Lập báo cáo'..."
-              class="w-full rounded-xl border border-slate-300 bg-white p-3 font-mono text-xs leading-relaxed text-slate-900 outline-none focus:border-emerald-500"></textarea>
-
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-[11px] text-slate-500">Mẹo: Dữ liệu chỉ đưa vào <strong>Bảng Báo cáo Kiểm duyệt</strong> bên dưới, chưa ghi vào sổ chính cho tới khi bạn bấm Đồng ý.</span>
-              <button type="button" onclick="analyzeSmartImportContent()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-sm cursor-pointer">
-                🔍 Phân tích &amp; Lập Báo cáo Kiểm duyệt ↓
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Khối 2: BÁO CÁO KIỂM DUYỆT CHI TIẾT TRƯỚC KHI CẬP NHẬT -->
-      <div id="smartimport-review-card" class="bg-white rounded-2xl border-2 border-amber-400 shadow-md overflow-hidden hidden">
-        <div class="p-4 bg-gradient-to-r from-amber-50 via-orange-50/70 to-slate-50 border-b border-amber-200 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-md bg-amber-500 text-slate-950 font-extrabold text-[11px]">BÁO CÁO KIỂM DUYỆT TRƯỚC KHI CẬP NHẬT</span>
-                <h3 class="text-sm sm:text-base font-extrabold text-slate-900">Chi tiết các vị trí &amp; nội dung dự kiến sẽ cập nhật vào hệ thống</h3>
-              </div>
-              <p id="smartimport-review-summary" class="text-xs text-slate-700 mt-1 font-semibold">
-                Vui lòng kiểm tra kỹ từng dòng bên dưới (có thể sửa trực tiếp nội dung mới hoặc bỏ tích các dòng không muốn cập nhật).
-              </p>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-2">
-              <button type="button" onclick="addManualSmartReviewRow()" class="px-3 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-bold text-xs cursor-pointer">
-                ➕ Thêm dòng kiểm duyệt
-              </button>
-              <button type="button" onclick="toggleAllSmartReviewItems(true)" class="px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs cursor-pointer">
-                ☑️ Chọn tất cả
-              </button>
-              <button type="button" onclick="toggleAllSmartReviewItems(false)" class="px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs cursor-pointer">
-                ⬜ Bỏ chọn hết
-              </button>
-              <button type="button" onclick="discardSmartReviewQueue()" class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs cursor-pointer">
-                ✕ Hủy bỏ không cập nhật
-              </button>
-              <button type="button" id="btn-approve-smart-import" onclick="approveAndCommitSmartImport()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md cursor-pointer">
-                ✅ Đồng ý &amp; Cập nhật vào hệ thống (<span id="smart-approved-count">0</span> mục)
-              </button>
-            </div>
-          </div>
-
-          <!-- 4 Thẻ thống kê vị trí cập nhật -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs tabular-nums">
-            <div class="p-2.5 rounded-xl bg-white border border-slate-200">
-              <div class="text-[11px] font-bold text-slate-500">Tổng mục nhận diện</div>
-              <div id="rev-stat-total" class="text-lg font-extrabold text-slate-900 mt-0.5">0</div>
-            </div>
-            <div class="p-2.5 rounded-xl bg-emerald-50/90 border border-emerald-200">
-              <div class="text-[11px] font-bold text-emerald-800">Bổ sung thửa có sẵn</div>
-              <div id="rev-stat-update" class="text-lg font-extrabold text-emerald-900 mt-0.5">0</div>
-            </div>
-            <div class="p-2.5 rounded-xl bg-sky-50/90 border border-sky-200">
-              <div class="text-[11px] font-bold text-sky-800">Thêm mới / Đợt vốn</div>
-              <div id="rev-stat-new" class="text-lg font-extrabold text-sky-900 mt-0.5">0</div>
-            </div>
-            <div class="p-2.5 rounded-xl bg-amber-50/90 border border-amber-300">
-              <div class="text-[11px] font-bold text-amber-800">Cần chọn lại vị trí</div>
-              <div id="rev-stat-warn" class="text-lg font-extrabold text-amber-900 mt-0.5">0</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bảng kiểm duyệt từng dòng -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left border-collapse tabular-nums">
-            <thead>
-              <tr class="bg-slate-100 border-b border-slate-200 text-[11px] font-extrabold text-slate-700">
-                <th class="py-2.5 px-3 w-10 text-center">Duyệt</th>
-                <th class="py-2.5 px-2.5 w-12 text-center">STT</th>
-                <th class="py-2.5 px-3 whitespace-nowrap">Vị trí sẽ cập nhật (Sheet • Tờ/Thửa • Chủ hộ)</th>
-                <th class="py-2.5 px-3 whitespace-nowrap">Mốc / Cột dữ liệu</th>
-                <th class="py-2.5 px-3 min-w-[180px]">Nội dung hiện tại trên hệ thống</th>
-                <th class="py-2.5 px-3 min-w-[230px]">Nội dung mới sẽ cập nhật (Sửa được)</th>
-                <th class="py-2.5 px-3 whitespace-nowrap">Chế độ ghi</th>
-                <th class="py-2.5 px-2.5 text-center w-14">Xóa</th>
-              </tr>
-            </thead>
-            <tbody id="smartimport-review-tbody" class="divide-y divide-slate-100"></tbody>
-          </table>
-        </div>
-
-        <div class="p-3.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-          <span class="text-slate-600 font-semibold">Sau khi bấm <strong>Đồng ý &amp; Cập nhật</strong>, nếu cần hoàn tác bạn vẫn có thể bấm nút <strong>↩ Back lại trước đó</strong> trên thanh tiêu đề.</span>
-          <button type="button" onclick="approveAndCommitSmartImport()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-sm cursor-pointer">
-            ✅ Xác nhận Đồng ý Cập nhật ngay
-          </button>
-        </div>
-      </div>
-
-      <!-- Khối 3: Lịch sử các lần đã kiểm duyệt & cập nhật -->
-      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-4 space-y-2.5">
-        <div class="flex items-center justify-between">
-          <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">Lịch sử các đợt nhập liệu từ Ảnh / File đã được bạn phê duyệt</h4>
-          <span id="smartimport-history-count" class="text-[11px] font-bold text-slate-500">0 lần cập nhật</span>
-        </div>
-        <div id="smartimport-history-list" class="space-y-1.5 text-xs text-slate-600">
-          <p class="text-slate-400 italic">Chưa có lần cập nhật nào từ Ảnh / File trong phiên làm việc này.</p>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -16926,6 +16651,35 @@
       return isMilestoneDone(rec['Bàn giao MB']) || isMilestoneDone(rec['Bàn giao thực tế']);
     }
 
+    function isSddOnlyText(val) {
+      if (!val) return false;
+      const s = removeVietnameseTones(String(val)).toLowerCase().trim();
+      if (!s) return false;
+      const parts = s.split(/\s*[;\n]+\s*/).filter(Boolean);
+      if (parts.length === 0) return false;
+      return parts.every(p => {
+        const hasSdd = /(thue\s*sdd|tien\s*sdd|chi\s*(tien\s*)?sdd|nop\s*(tien\s*)?sdd|dong\s*(tien\s*)?sdd|\bsdd\b|su\s*dung\s*dat|chua\s*nhan\s*(tien\s*)?(bt|boi\s*thuong))/.test(p);
+        const hasRealBt = /(da\s*nhan\s*(tien\s*)?(bt|boi\s*thuong)|chi\s*tra\s*(bt|boi\s*thuong)|nhan\s*tien\s*(bt|boi\s*thuong))/.test(p) && !/chua\s*nhan/.test(p);
+        return hasSdd && !hasRealBt;
+      });
+    }
+
+    function isTaxSddDone(rec) {
+      if (!rec) return false;
+      return isMilestoneDone(rec['Thuế SDĐ']) || (rec['Số tiền thuế SDĐ'] || 0) > 0;
+    }
+
+    // Quy tắc: Trường hợp chỉ chi tiền/thuế SDĐ nhưng chưa nhận tiền bồi thường -> KHÔNG tính là đã chi trả
+    function isChiTraBtDone(rec) {
+      if (!rec) return false;
+      const btPaid = rec['Số tiền BT đã chi'] !== undefined
+        ? (rec['Số tiền BT đã chi'] || 0)
+        : Math.max(0, (rec['Số tiền đã chi trả'] || 0) - (rec['Số tiền thuế SDĐ'] || 0));
+      const chiTraText = String(rec['Chi trả BT'] || '').trim();
+      if (isSddOnlyText(chiTraText)) return false;
+      return isMilestoneDone(chiTraText) || btPaid > 0;
+    }
+
     function sumExplicitMoneyInRoundsText(rawText) {
       const s = String(rawText || '').trim();
       if (!s) return 0;
@@ -16948,21 +16702,29 @@
 
     function normalizeRecord(raw = {}, idx = 0) {
       const pdMoney = parseVnNumber(raw['Giá trị PD PABT']);
-      const chiTraText = excelSerialToDateStr(raw['Chi trả BT']);
+      let chiTraText = excelSerialToDateStr(raw['Chi trả BT']);
       const rawThueSdd = raw['Thuế SDĐ'] !== undefined ? raw['Thuế SDĐ'] : (raw['Đóng thuế SDĐ'] !== undefined ? raw['Đóng thuế SDĐ'] : '');
-      const thueSddText = excelSerialToDateStr(rawThueSdd);
+      let thueSddText = excelSerialToDateStr(rawThueSdd);
 
       const chiTraRoundsSum = sumExplicitMoneyInRoundsText(chiTraText);
       const taxRoundsSum = sumExplicitMoneyInRoundsText(thueSddText);
 
       const rawTaxMoney = parseVnNumber(raw['Số tiền thuế SDĐ'] !== undefined ? raw['Số tiền thuế SDĐ'] : raw['Tiền thuế SDĐ']);
-      const taxMoney = taxRoundsSum > 0 ? taxRoundsSum : rawTaxMoney;
+      let taxMoney = taxRoundsSum > 0 ? taxRoundsSum : rawTaxMoney;
 
       const rawBtPaid = raw['Số tiền BT đã chi'] !== undefined ? parseVnNumber(raw['Số tiền BT đã chi']) : null;
       const rawPaidTotal = parseVnNumber(raw['Số tiền đã chi trả']);
-      const btPaidMoney = chiTraRoundsSum > 0
+      let btPaidMoney = chiTraRoundsSum > 0
         ? chiTraRoundsSum
-        : (rawBtPaid !== null ? rawBtPaid : rawPaidTotal);
+        : (rawBtPaid !== null ? rawBtPaid : (taxMoney > 0 && !isMilestoneDone(chiTraText) ? Math.max(0, rawPaidTotal - taxMoney) : rawPaidTotal));
+
+      // Nếu cột Chi trả BT chỉ ghi nhận nội dung chi tiền SDĐ / thuế SDĐ -> chuyển sang nhóm SDĐ, không tính đã chi trả BT
+      if (isSddOnlyText(chiTraText)) {
+        if (!thueSddText) thueSddText = chiTraText;
+        if (taxMoney === 0 && btPaidMoney > 0) taxMoney = btPaidMoney;
+        chiTraText = '';
+        btPaidMoney = 0;
+      }
 
       // Số tiền đã chi = Số tiền bồi thường đã chi + Tiền sử dụng đất
       const paidMoney = btPaidMoney + taxMoney;
@@ -17569,7 +17331,7 @@
     // =========================================================================
     function switchMainTab(tabName) {
       currentMainTab = tabName;
-      const tabs = ['dashboard', 'parcels', 'households', 'transfer', 'zalo', 'smartimport'];
+      const tabs = ['dashboard', 'parcels', 'households', 'transfer', 'zalo'];
       tabs.forEach(t => {
         const viewEl = document.getElementById(`view-${t}`);
         const btnEl = document.getElementById(`tab-btn-${t}`);
@@ -17595,8 +17357,7 @@
         renderTransferSheet();
       } else if (tabName === 'zalo') {
         generateZaloReport();
-      } else if (tabName === 'smartimport') {
-        renderSmartImportReviewTable();
+
       }
       if (window.lucide) lucide.createIcons();
     }
@@ -17604,7 +17365,7 @@
     // =========================================================================
     // 7. TAB 1: DASHBOARD TỔNG QUAN, BIỂU ĐỒ PHỄU 11 MỐC & BẢNG PHÂN RÃ
     // =========================================================================
-    const GD_ORDER = ['GĐ 1', 'GĐ 2', 'GĐ 3', 'GĐ 4', 'GĐ 5', 'DGT', 'DTL'];
+    const GD_ORDER = ['GĐ 1', 'GĐ 2', 'GĐ 3', 'GĐ 4', 'GĐ 5'];
 
     function sortGdValues(list) {
       return [...list].sort((a, b) => {
@@ -17701,7 +17462,7 @@
         const g = r['GĐ'] || 'Chưa phân GĐ';
         gdCounts[g] = (gdCounts[g] || 0) + 1;
       });
-      const allGds = sortGdValues(Array.from(new Set([...GD_ORDER, ...Object.keys(gdCounts)])));
+      const allGds = sortGdValues(Array.from(new Set([...GD_ORDER, ...Object.keys(gdCounts)])).filter(g => g !== 'DGT' && g !== 'DTL'));
       const gdPillsEl = document.getElementById('dash-gd-pills');
       if (gdPillsEl) {
         const allActive = dashSelectedGds.size === 0;
@@ -17745,7 +17506,7 @@
       const sumPdMoney = filtered.reduce((s, r) => s + (r['Giá trị PD PABT'] || 0), 0);
       const cntQd = filtered.filter(r => isMilestoneDone(r['QĐTHĐ'])).length;
       const cntCc = filtered.filter(r => isMilestoneDone(r['CC THĐ'])).length;
-      const cntPaid = filtered.filter(r => isMilestoneDone(r['Chi trả BT']) || r['Số tiền đã chi trả'] > 0).length;
+      const cntPaid = filtered.filter(r => isChiTraBtDone(r)).length;
       const sumPaidMoney = filtered.reduce((s, r) => s + (r['Số tiền đã chi trả'] || 0), 0);
       const cntBgmb = filtered.filter(r => isBgmbDone(r)).length;
       const htGpmbRecords = filtered.filter(r => isMilestoneDone(r['Hoàn thành công tác GPMB']));
@@ -17800,7 +17561,7 @@
 
       const funnelPillsEl = document.getElementById('funnel-gd-pills');
       if (funnelPillsEl) {
-        const fOptions = ['ALL', 'GĐ 1', 'GĐ 2', 'GĐ 3', 'GĐ 4', 'GĐ 5', 'DGT', 'DTL'];
+        const fOptions = ['ALL', 'GĐ 1', 'GĐ 2', 'GĐ 3', 'GĐ 4', 'GĐ 5'];
         funnelPillsEl.innerHTML = fOptions.map(opt => {
           const isAct = (opt === 'ALL' && dashSelectedGds.size === 0) || (dashSelectedGds.size === 1 && dashSelectedGds.has(opt));
           return `<button type="button" onclick="setFunnelGd('${opt}')" class="px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${isAct ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">${opt === 'ALL' ? 'Tất cả' : opt}</button>`;
@@ -17923,7 +17684,7 @@
         pdMoney: arr.reduce((s, r) => s + (r['Giá trị PD PABT'] || 0), 0),
         qd: arr.filter(r => isMilestoneDone(r['QĐTHĐ'])).length,
         cc: arr.filter(r => isMilestoneDone(r['CC THĐ'])).length,
-        paid: arr.filter(r => isMilestoneDone(r['Chi trả BT']) || r['Số tiền đã chi trả'] > 0).length,
+        paid: arr.filter(r => isChiTraBtDone(r)).length,
         paidMoney: arr.reduce((s, r) => s + (r['Số tiền đã chi trả'] || 0), 0),
         bgmb: arr.filter(r => isBgmbDone(r)).length,
         htGpmb: arr.filter(r => isMilestoneDone(r['Hoàn thành công tác GPMB'])).length,
@@ -18160,7 +17921,7 @@
     }
 
     function syncMultiSelectDropdowns() {
-      const allGds = sortGdValues(Array.from(new Set(allRecords.map(r => r['GĐ']).filter(Boolean))));
+      const allGds = sortGdValues(Array.from(new Set(allRecords.map(r => r['GĐ']).filter(g => g && g !== 'DGT' && g !== 'DTL'))));
       const recordsForTobd = allRecords.filter(r => parcelFilterGds.size === 0 || parcelFilterGds.has(r['GĐ']));
       const allTobds = sortTobdValues(Array.from(new Set(recordsForTobd.map(r => r['Tờ BĐ']).filter(Boolean))));
       const allLoaiDats = Array.from(new Set(allRecords.map(r => r['Loại đất']).filter(Boolean))).sort();
@@ -18248,7 +18009,7 @@
           const hasPd = isMilestoneDone(rec['PD PABT']) || (rec['Giá trị PD PABT'] || 0) > 0;
           const hasQd = isMilestoneDone(rec['QĐTHĐ']);
           const hasCc = isMilestoneDone(rec['CC THĐ']);
-          const hasPaid = isMilestoneDone(rec['Chi trả BT']) || (rec['Số tiền đã chi trả'] || 0) > 0;
+          const hasPaid = isChiTraBtDone(rec);
           const hasBgmb = isBgmbDone(rec);
           const hasHtGpmb = isMilestoneDone(rec['Hoàn thành công tác GPMB']);
           const gdAreaVal = rec['Diện tích giao đất'] || 0;
@@ -18259,10 +18020,11 @@
           if (bn === 'MISSING_PD' && (!hasXd || hasPd)) return false;
           if (bn === 'MISSING_QD' && (!hasPd || hasQd)) return false;
           if (bn === 'MISSING_PAID' && (!hasPd || hasPaid)) return false;
+          if (bn === 'TAX_ONLY' && (!isTaxSddDone(rec) || hasPaid)) return false;
           if (bn === 'DIFF_MONEY' && (rec['Giá trị PD PABT'] || 0) === (rec['Số tiền đã chi trả'] || 0)) return false;
           if (bn === 'PD_ZERO' && (!hasPd || (rec['Giá trị PD PABT'] || 0) !== 0)) return false;
-          if (bn === 'PAID_ZERO' && (!hasPaid || (rec['Số tiền đã chi trả'] || 0) !== 0)) return false;
-          if (bn === 'PD_AND_PAID_ZERO' && (!hasPd || (rec['Giá trị PD PABT'] || 0) !== 0 || !hasPaid || (rec['Số tiền đã chi trả'] || 0) !== 0)) return false;
+          if (bn === 'PAID_ZERO' && (!hasPaid || (rec['Số tiền BT đã chi'] || 0) !== 0)) return false;
+          if (bn === 'PD_AND_PAID_ZERO' && (!hasPd || (rec['Giá trị PD PABT'] || 0) !== 0 || !hasPaid || (rec['Số tiền BT đã chi'] || 0) !== 0)) return false;
           if (bn === 'HAS_CC_NO_BGMB' && (!hasCc || hasBgmb)) return false;
           if (bn === 'PAID_NO_BGMB' && (!hasPaid || hasBgmb)) return false;
           if (bn === 'BGMB_NO_HT_GPMB' && (!hasBgmb || hasHtGpmb)) return false;
@@ -18301,14 +18063,16 @@
         { k: 'PD', ok: isMilestoneDone(rec['PD PABT']) || rec['Giá trị PD PABT'] > 0, title: rec['PD PABT'] },
         { k: 'QĐ', ok: isMilestoneDone(rec['QĐTHĐ']), title: rec['QĐTHĐ'] },
         { k: 'CC', ok: isMilestoneDone(rec['CC THĐ']), title: rec['CC THĐ'], warn: true },
-        { k: 'CT', ok: isMilestoneDone(rec['Chi trả BT']) || rec['Số tiền đã chi trả'] > 0, title: rec['Chi trả BT'] },
+        { k: 'CT', ok: isChiTraBtDone(rec), taxOnly: !isChiTraBtDone(rec) && isTaxSddDone(rec), title: isChiTraBtDone(rec) ? (rec['Chi trả BT'] || 'Đã chi trả BT') : (isTaxSddDone(rec) ? 'Đã chi tiền SDĐ — Chưa nhận tiền bồi thường (chưa tính đã chi trả)' : 'Chưa chi trả BT') },
         { k: 'BG', ok: isBgmbDone(rec), title: [rec['Bàn giao MB'], rec['Bàn giao thực tế']].filter(Boolean).join(' | '), bg: true },
         { k: 'HT', ok: isMilestoneDone(rec['Hoàn thành công tác GPMB']), title: `Hoàn thành công tác GPMB: ${rec['Hoàn thành công tác GPMB']}`, final: true },
         { k: 'GĐ', ok: gdOk, title: gdTitle, gd: true }
       ];
       return items.map(it => {
         let cls = 'bg-slate-100 text-slate-400 border-slate-200';
-        if (it.ok) {
+        if (it.taxOnly) {
+          cls = 'bg-amber-50 text-amber-700 border-amber-300 border-dashed';
+        } else if (it.ok) {
           if (it.warn) cls = 'bg-rose-100 text-rose-800 border-rose-300';
           else if (it.gd) cls = 'bg-indigo-600 text-white border-indigo-700 shadow-xs';
           else if (it.final) cls = 'bg-emerald-700 text-white border-emerald-800 shadow-xs';
@@ -18423,28 +18187,28 @@
             <td class="py-2.5 px-3 text-right whitespace-nowrap">
               ${(() => {
                 const hasPdRow = isMilestoneDone(rec['PD PABT']) || pdMoney > 0;
-                const hasPaidRow = isMilestoneDone(rec['Chi trả BT']) || paidMoney > 0;
+                const hasPaidRow = isChiTraBtDone(rec);
                 const pdHtml = pdMoney > 0
                   ? `<div class="font-bold text-amber-900">PD: ${formatCurrency(pdMoney)}</div>`
                   : (hasPdRow
                     ? `<div class="font-bold text-amber-900">PD: 0 đ <span class="px-1 py-0.5 rounded bg-amber-100 text-amber-800 text-[9px] font-extrabold">0đ</span></div>`
                     : `<div class="font-semibold text-slate-400">PD: —</div>`);
-                const paidHtml = paidMoney > 0
-                  ? `<div class="font-bold text-teal-800">Chi: ${formatCurrency(paidMoney)}</div>`
-                  : (hasPaidRow
-                    ? `<div class="font-bold text-teal-800">Chi: 0 đ <span class="px-1 py-0.5 rounded bg-teal-100 text-teal-800 text-[9px] font-extrabold">0đ</span></div>`
-                    : `<div class="font-semibold text-slate-400">Chi: —</div>`);
+                const paidHtml = hasPaidRow
+                  ? (paidMoney > 0
+                    ? `<div class="font-bold text-teal-800">Chi: ${formatCurrency(paidMoney)}</div>`
+                    : `<div class="font-bold text-teal-800">Chi: 0 đ <span class="px-1 py-0.5 rounded bg-teal-100 text-teal-800 text-[9px] font-extrabold">0đ</span></div>`)
+                  : `<div class="font-semibold text-slate-400">Chi BT: —</div>`;
                 return pdHtml + paidHtml;
               })()}
               ${(() => {
                 const taxMoney = rec['Số tiền thuế SDĐ'] || 0;
-                const hasTax = isMilestoneDone(rec['Thuế SDĐ']) || taxMoney > 0;
+                const hasTax = isTaxSddDone(rec);
                 if (!hasTax) return '';
-                const taxLabel = taxMoney > 0 ? formatCurrency(taxMoney) : 'Đã đóng';
-                if (paidMoney === 0 && !isMilestoneDone(rec['Chi trả BT'])) {
-                  return `<div class="text-[10px] font-extrabold text-amber-800 bg-amber-100 border border-amber-300 rounded px-1.5 py-0.5 mt-0.5 inline-block" title="Đã đóng thuế SDĐ nhưng chưa nhận tiền bồi thường">Thuế SDĐ: ${taxLabel} • Chưa nhận BT</div>`;
+                const taxLabel = taxMoney > 0 ? formatCurrency(taxMoney) : 'Đã chi';
+                if (!isChiTraBtDone(rec)) {
+                  return `<div class="text-[10px] font-extrabold text-amber-800 bg-amber-100 border border-amber-300 rounded px-1.5 py-0.5 mt-0.5 inline-block" title="Đã chi tiền SDĐ nhưng chưa nhận tiền bồi thường (không tính là đã chi trả)">Tiền SDĐ: ${taxLabel} • Chưa nhận BT</div>`;
                 }
-                return `<div class="text-[10px] font-bold text-amber-700">Thuế SDĐ: ${taxLabel}</div>`;
+                return `<div class="text-[10px] font-bold text-amber-700">Tiền SDĐ: ${taxLabel}</div>`;
               })()}
               ${diff > 0 ? `<div class="text-[10px] font-extrabold text-rose-600">Còn: ${formatCurrency(diff)}</div>` : ''}
             </td>
@@ -19170,7 +18934,7 @@
         `;
       }
 
-      const paidParcels = allRecords.filter(r => isMilestoneDone(r['Chi trả BT']) || (r['Số tiền đã chi trả'] || 0) > 0);
+      const paidParcels = allRecords.filter(r => isChiTraBtDone(r));
       const paidHhSet = new Set(paidParcels.map((r, i) => getStrictHouseholdKey(r, i)));
       const allocParcels = allRecords.filter(r => (r['Số tiền đã chuyển'] || 0) > 0);
       const allocHhSet = new Set(allocParcels.map((r, i) => getStrictHouseholdKey(r, i)));
@@ -19204,7 +18968,7 @@
       const gdSel = document.getElementById('tr-gd-filter');
       if (gdSel) {
         const cur = gdSel.value || 'ALL';
-        const gds = sortGdValues(Array.from(new Set(allRecords.map(r => r['GĐ']).filter(Boolean))));
+        const gds = sortGdValues(Array.from(new Set(allRecords.map(r => r['GĐ']).filter(g => g && g !== 'DGT' && g !== 'DTL'))));
         gdSel.innerHTML = `<option value="ALL">Tất cả Giai đoạn</option>` + gds.map(g => `<option value="${escapeHtml(g)}" ${g === cur ? 'selected' : ''}>${escapeHtml(g)}</option>`).join('');
       }
 
@@ -20237,7 +20001,7 @@
       const pdMoney = recs.reduce((s, r) => s + (r['Giá trị PD PABT'] || 0), 0);
       const qd = recs.filter(r => isMilestoneDone(r['QĐTHĐ'])).length;
       const cc = recs.filter(r => isMilestoneDone(r['CC THĐ'])).length;
-      const paid = recs.filter(r => isMilestoneDone(r['Chi trả BT']) || (r['Số tiền đã chi trả'] || 0) > 0).length;
+      const paid = recs.filter(r => isChiTraBtDone(r)).length;
       const paidMoney = recs.reduce((s, r) => s + (r['Số tiền đã chi trả'] || 0), 0);
       const bgmb = recs.filter(r => isBgmbDone(r)).length;
       const htGpmbRecs = recs.filter(r => isMilestoneDone(r['Hoàn thành công tác GPMB']));
@@ -23044,8 +22808,8 @@
       { field: 'CC THĐ', regex: /(cc\s*thd|ccthd|cuong\s*che|qd\s*cuong\s*che)/ },
       { field: 'Chi trả BT', regex: /^(chi\s*tra|chi\s*tra\s*bt|chi\s*tra\s*boi\s*thuong|dot\s*chi\s*tra)$/ },
       { field: 'Số tiền đã chi trả', regex: /^(so\s*tien\s*da\s*chi|tien\s*da\s*chi|da\s*chi\s*tra|so\s*tien\s*chi\s*tra)/ },
-      { field: 'Thuế SDĐ', regex: /^(thue\s*sdd|dong\s*thue\s*sdd|thue\s*su\s*dung\s*dat|dong\s*thue\s*su\s*dung\s*dat)$/ },
-      { field: 'Số tiền thuế SDĐ', regex: /^(so\s*tien\s*thue\s*sdd|tien\s*thue\s*sdd|so\s*tien\s*thue\s*su\s*dung\s*dat|tien\s*thue)/ },
+      { field: 'Thuế SDĐ', regex: /^(thue\s*sdd|dong\s*thue\s*sdd|chi\s*tien\s*sdd|chi\s*sdd|nop\s*tien\s*sdd|dong\s*tien\s*sdd|thue\s*su\s*dung\s*dat|dong\s*thue\s*su\s*dung\s*dat|chi\s*tien\s*su\s*dung\s*dat)$/ },
+      { field: 'Số tiền thuế SDĐ', regex: /^(so\s*tien\s*thue\s*sdd|tien\s*thue\s*sdd|so\s*tien\s*sdd|tien\s*sdd|so\s*tien\s*thue\s*su\s*dung\s*dat|tien\s*su\s*dung\s*dat|tien\s*thue)/ },
       { field: 'Bàn giao thực tế', regex: /^(ban\s*giao\s*thuc\s*te|bgmb\s*thuc\s*te|ngay\s*ban\s*giao\s*thuc\s*te|bg\s*thuc\s*te)$/ },
       { field: 'Bàn giao MB', regex: /^(ban\s*giao|bgmb|ban\s*giao\s*mb|ban\s*giao\s*mat\s*bang|ban\s*giao\s*tren\s*bien\s*ban|bgmb\s*bien\s*ban)$/ },
       { field: 'Hoàn thành công tác GPMB', regex: /(hoan\s*thanh\s*cong\s*tac\s*gpmb|hoan\s*thanh\s*gpmb|ht\s*gpmb|cong\s*tac\s*gpmb|^hoan\s*thanh$)/ },
@@ -24361,23 +24125,6 @@
         }
       });
 
-      document.addEventListener('paste', async (e) => {
-        if (currentMainTab !== 'smartimport') return;
-        const items = Array.from(e.clipboardData?.items || []);
-        const imgItems = items.filter(it => it.type && it.type.startsWith('image/'));
-        if (imgItems.length === 0) return;
-        e.preventDefault();
-        const dataUrls = await Promise.all(imgItems.map(it => new Promise(resolve => {
-          const blob = it.getAsFile();
-          const reader = new FileReader();
-          reader.onload = ev => resolve(ev.target.result);
-          reader.readAsDataURL(blob);
-        })));
-        smartUploadedImagesDataUrls = dataUrls;
-        renderSmartImagePreviews(dataUrls, `Ảnh dán từ Clipboard (${dataUrls.length} ảnh)`);
-        await runOcrOnImageDataUrls(dataUrls);
-      });
-
       document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
           const tag = (document.activeElement?.tagName || '').toLowerCase();
@@ -24488,5 +24235,197 @@
         }
       });
     })();
+  
+    // =========================================================================
+    // ĐỒNG BỘ GOOGLE SHEET CHO SHEET BỐ TRÍ VỐN & CHI TIỀN (BẢNG 1)
+    // =========================================================================
+    const STORAGE_KEY_TRANSFER_GSHEET_CFG = 'cvtt_dongxoai_transfer_gsheet_cfg_v2';
+    const DEFAULT_TRANSFER_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/1w-mmPRZ6if0DtT4xeNUIcKXa5H4FvpdmWqZx_bMeXN4/edit?gid=1635048306#gid=1635048306';
+
+    function getSavedTransferGoogleSheetConfig() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_TRANSFER_GSHEET_CFG) || 'null');
+        if (saved && saved.url) {
+          return {
+            url: saved.url,
+            tabName: saved.tabName !== undefined ? saved.tabName : '',
+            mode: saved.mode || 'REPLACE',
+            lastSync: saved.lastSync || ''
+          };
+        }
+      } catch (e) {}
+      return {
+        url: DEFAULT_TRANSFER_GSHEET_URL,
+        tabName: '',
+        mode: 'REPLACE',
+        lastSync: ''
+      };
+    }
+
+    function openTransferGoogleSheetModal() {
+      const cfg = getSavedTransferGoogleSheetConfig();
+      const urlInp = document.getElementById('transfer-gsheet-url-input');
+      const tabInp = document.getElementById('transfer-gsheet-tab-name');
+      const modeSel = document.getElementById('transfer-gsheet-mode');
+      const lastEl = document.getElementById('transfer-gsheet-last-sync');
+      const statusEl = document.getElementById('transfer-gsheet-status');
+      if (urlInp) urlInp.value = cfg.url || DEFAULT_TRANSFER_GSHEET_URL;
+      if (tabInp) tabInp.value = cfg.tabName || '';
+      if (modeSel) modeSel.value = cfg.mode || 'REPLACE';
+      if (lastEl) lastEl.textContent = cfg.lastSync ? `Đồng bộ gần nhất: ${cfg.lastSync}` : '';
+      if (statusEl) { statusEl.className = 'hidden p-2.5 rounded-xl text-[11px] font-bold'; statusEl.textContent = ''; }
+      const b = document.getElementById('transfer-gsheet-modal-backdrop');
+      if (b) { b.classList.remove('hidden'); b.classList.add('flex'); }
+    }
+
+    function closeTransferGoogleSheetModal() {
+      const b = document.getElementById('transfer-gsheet-modal-backdrop');
+      if (b) { b.classList.add('hidden'); b.classList.remove('flex'); }
+    }
+
+    function setTransferGsheetStatus(msg, tone = 'info') {
+      const el = document.getElementById('transfer-gsheet-status');
+      if (!el) return;
+      const styles = {
+        info: 'bg-sky-50 text-sky-800 border border-sky-200',
+        success: 'bg-emerald-50 text-emerald-800 border border-emerald-200',
+        error: 'bg-rose-50 text-rose-800 border border-rose-200'
+      };
+      el.className = `p-2.5 rounded-xl text-[11px] font-bold ${styles[tone] || styles.info}`;
+      el.textContent = msg;
+    }
+
+    async function executeTransferGoogleSheetSync({ rawUrl, tabName = '', mode = 'REPLACE', saveLink = true, fromModal = false }) {
+      const parsedUrl = parseGoogleSheetUrl(rawUrl);
+      if (!parsedUrl) {
+        const msg = '⚠️ Link Google Sheet không hợp lệ. Vui lòng dán đúng link từ trình duyệt.';
+        if (fromModal) setTransferGsheetStatus(msg, 'error');
+        else showToast(msg, 'error');
+        return;
+      }
+
+      const modalBtn = document.getElementById('btn-run-transfer-gsheet-import');
+      const quickBtn = document.getElementById('btn-quick-sync-transfer-gsheet');
+      const topIcon = document.getElementById('icon-sync-transfer-gsheet');
+      const topLbl = document.getElementById('lbl-sync-transfer-gsheet');
+
+      if (modalBtn) { modalBtn.disabled = true; modalBtn.textContent = '⏳ Đang tải dữ liệu...'; }
+      if (quickBtn) quickBtn.disabled = true;
+      if (topIcon) topIcon.classList.add('gsheet-spinning');
+      if (topLbl) topLbl.textContent = 'Đang cập nhật...';
+      if (fromModal) setTransferGsheetStatus('⏳ Đang kết nối Google Sheet và đọc bảng các đợt chuyển tiền...', 'info');
+
+      try {
+        const aoa = await fetchGoogleSheetAsMatrix(parsedUrl, tabName);
+        if (!aoa || aoa.length === 0) {
+          throw new Error('Sheet trống hoặc không có dữ liệu.');
+        }
+
+        const parsedTransfers = parseCompanyTransfersFromMatrix(aoa, true);
+        if (!parsedTransfers || parsedTransfers.length === 0) {
+          throw new Error('Không tìm thấy cột dữ liệu đợt chuyển tiền hợp lệ trong sheet này. Hãy kiểm tra lại link (gid) hoặc Tên Tab.');
+        }
+
+        if (typeof pushUndoSnapshot === 'function') {
+          pushUndoSnapshot('Đồng bộ Bảng 1 từ Google Sheet');
+        }
+        companyTransfers = mode === 'APPEND' ? [...companyTransfers, ...parsedTransfers] : parsedTransfers;
+
+        const nowStr = new Date().toLocaleString('vi-VN');
+        if (saveLink) {
+          try {
+            localStorage.setItem(STORAGE_KEY_TRANSFER_GSHEET_CFG, JSON.stringify({
+              url: rawUrl,
+              tabName,
+              mode,
+              lastSync: nowStr
+            }));
+          } catch (e) {}
+        }
+
+        saveToLocalStorage();
+        renderTransferSheet();
+        if (typeof renderDashboardTab === 'function') renderDashboardTab();
+        const okMsg = `✅ Đã cập nhật thành công ${parsedTransfers.length} đợt chuyển tiền từ Google Sheet!`;
+        if (fromModal) {
+          setTransferGsheetStatus(okMsg, 'success');
+          setTimeout(() => closeTransferGoogleSheetModal(), 800);
+        }
+        showToast(okMsg, 'success');
+      } catch (err) {
+        console.error('Transfer GSheet sync error:', err);
+        const errMsg = `❌ Lỗi: ${err.message || 'Không thể tải dữ liệu từ Google Sheet.'}`;
+        if (fromModal) setTransferGsheetStatus(errMsg, 'error');
+        else showToast(errMsg, 'error');
+      } finally {
+        if (modalBtn) { modalBtn.disabled = false; modalBtn.textContent = '🔄 Đồng bộ ngay'; }
+        if (quickBtn) quickBtn.disabled = false;
+        if (topIcon) topIcon.classList.remove('gsheet-spinning');
+        if (topLbl) topLbl.textContent = 'Cập nhật';
+      }
+    }
+
+    async function syncTransferFromGoogleSheet() {
+      const rawUrl = (document.getElementById('transfer-gsheet-url-input')?.value || '').trim();
+      const tabName = (document.getElementById('transfer-gsheet-tab-name')?.value || '').trim();
+      const mode = document.getElementById('transfer-gsheet-mode')?.value || 'REPLACE';
+      const saveLink = document.getElementById('transfer-gsheet-save-link')?.checked;
+      await executeTransferGoogleSheetSync({ rawUrl, tabName, mode, saveLink, fromModal: true });
+    }
+
+    async function quickSyncTransferFromGoogleSheet() {
+      const cfg = getSavedTransferGoogleSheetConfig();
+      await executeTransferGoogleSheetSync({
+        rawUrl: cfg.url || DEFAULT_TRANSFER_GSHEET_URL,
+        tabName: cfg.tabName || '',
+        mode: cfg.mode || 'REPLACE',
+        saveLink: true,
+        fromModal: false
+      });
+    }
   </script>
+  <!-- MODAL ĐỒNG BỘ GOOGLE SHEET CHO BẢNG 1 (BỐ TRÍ VỐN & CHUYỂN TIỀN) -->
+  <div id="transfer-gsheet-modal-backdrop" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4" onclick="if(event.target===this) closeTransferGoogleSheetModal()">
+    <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden">
+      <div class="px-5 py-4 bg-gradient-to-r from-emerald-900 to-teal-900 text-white flex items-center justify-between">
+        <div>
+          <h3 class="text-sm font-extrabold">Đồng bộ Google Sheet — Bố trí vốn &amp; Chi tiền</h3>
+          <p class="text-[11px] text-emerald-200 mt-0.5">Tự động nạp danh sách các đợt Công ty chuyển tiền (Bảng 1)</p>
+        </div>
+        <button type="button" onclick="closeTransferGoogleSheetModal()" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white cursor-pointer">✕</button>
+      </div>
+      <div class="p-5 space-y-3.5 text-xs">
+        <div>
+          <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Link Google Sheet (đã bật chia sẻ Xem cho bất kỳ ai)</label>
+          <input type="url" id="transfer-gsheet-url-input" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold outline-none focus:border-emerald-500">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Tên Tab (Sheet) cần đọc</label>
+            <input type="text" id="transfer-gsheet-tab-name" placeholder="Để trống để lấy đúng theo gid trong link" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Chế độ đồng bộ</label>
+            <select id="transfer-gsheet-mode" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white font-bold text-slate-800 outline-none focus:border-emerald-500">
+              <option value="REPLACE">Thay thế toàn bộ Bảng 1</option>
+              <option value="APPEND">Cộng nối thêm vào Bảng 1</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-slate-500">
+          <label class="inline-flex items-center gap-1.5 cursor-pointer font-semibold text-slate-700">
+            <input type="checkbox" id="transfer-gsheet-save-link" checked class="rounded border-slate-300 text-emerald-600">
+            <span>Lưu link &amp; tên tab cho lần sau</span>
+          </label>
+          <span id="transfer-gsheet-last-sync"></span>
+        </div>
+        <div id="transfer-gsheet-status" class="hidden p-2.5 rounded-xl text-[11px] font-bold"></div>
+      </div>
+      <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2 text-xs">
+        <button type="button" onclick="closeTransferGoogleSheetModal()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 font-bold text-slate-700 cursor-pointer">Đóng</button>
+        <button type="button" id="btn-run-transfer-gsheet-import" onclick="syncTransferFromGoogleSheet()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold shadow-sm cursor-pointer">🔄 Đồng bộ ngay</button>
+      </div>
+    </div>
+  </div>
+
 </body></html>
