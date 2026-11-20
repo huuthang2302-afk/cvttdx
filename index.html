@@ -23613,6 +23613,7 @@
           const cols = (resp.table.cols || []).map(c => (c && (c.label || c.id)) ? String(c.label || c.id) : '');
           const rows = (resp.table.rows || []).map(r => (r.c || []).map(cell => {
             if (!cell || (cell.v === null && cell.f === undefined)) return '';
+            if (typeof cell.v === 'number' && !isNaN(cell.v)) return cell.v;
             if (cell.f !== undefined && cell.f !== null && String(cell.f).trim() !== '') return String(cell.f);
             return cell.v !== undefined && cell.v !== null ? cell.v : '';
           }));
@@ -23655,7 +23656,7 @@
         if (/<!doctype html|<html/i.test(text.slice(0, 300))) {
           throw new Error('Google Sheets đang yêu cầu đăng nhập. Vui lòng bật quyền "Bất kỳ ai có đường liên kết đều có thể xem".');
         }
-        const wb = XLSX.read(text, { type: 'string', raw: false });
+        const wb = XLSX.read(text, { type: 'string', raw: true });
         const firstSheet = wb.Sheets[wb.SheetNames[0]];
         return XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: '' });
       } catch (fetchErr) {
