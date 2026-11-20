@@ -1,0 +1,25 @@
+{
+  "name": "GPMB Công viên trung tâm Đồng Xoài",
+  "short_name": "CVTT Đồng Xoài",
+  "description": "Hệ thống Quản lý Tiến độ Giải phóng mặt bằng - Khu đô thị mới - Công viên trung tâm Đồng Xoài",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f6ef",
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
